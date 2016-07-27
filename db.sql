@@ -1,24 +1,26 @@
-
-CREATE TABLE Traders (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+CREATE TABLE Accounts (
+    id                  SERIAL PRIMARY KEY
 );
 
+CREATE TABLE Items (
+    id                  SERIAL PRIMARY KEY,
+    name                VARCHAR(90),
+    attributes          JSON
+);
+
+
+
 CREATE TABLE Users (
-    id INTEGER PRIMARY KEY REFERENCES Traders(id),
-    displayName VARCHAR(30)
+    id                  SERIAL PRIMARY KEY,
+    displayName         VARCHAR(90),
+    accountId           INTEGER REFERENCES Accounts(id)
 );
 
 CREATE TABLE Shops (
-    id INTEGER PRIMARY KEY REFERENCES Traders(id),
-    name VARCHAR(32)
+    id                  SERIAL PRIMARY KEY,
+    name                VARCHAR(90),
+    accountId           INTEGER REFERENCES Accounts(id)
 );
 
-
-CREATE TABLE MoneyTransactions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    giverId INTEGER REFERENCES Traders(id),
-    reciepentId INTEGER REFERENCES Traders(id),
-    amount INTEGER
-);
 
 
